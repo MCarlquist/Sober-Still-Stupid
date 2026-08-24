@@ -29,8 +29,7 @@ export const getYoutubeChannel = createServerFn().handler(async () => {
                 .filter(
                     (item: { id?: { videoId?: string } }) =>
                         !excludedVideoIds.has(item.id?.videoId ?? ''),
-                )
-                .toReversed(),
+                ),
         };
     } catch (error) {
         console.error('fetch error: ', error);

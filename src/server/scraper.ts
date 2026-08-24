@@ -2,7 +2,7 @@ import { WebScrapingAI } from 'webscraping-ai';
 import { createServerFn } from "@tanstack/react-start";
 
 export const scrapeNA = createServerFn().handler(async () => {
-    const client = new WebScrapingAI({ apiKey: 'e260e1df-77b1-4cf4-998f-d0fcbe127ce5' });
+    const client = new WebScrapingAI({ apiKey: process.env.WEBSCRAPE_API_KEY });
     const text = await client.text({
       url: 'https://www.nasverige.org/moteslista/',
       timeout: 10000,

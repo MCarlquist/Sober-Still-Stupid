@@ -12,7 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
-import { Route as PodcastRouteImport } from './routes/podcast'
+import { Route as EpisodesRouteImport } from './routes/episodes'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as DemoI18nRouteImport } from './routes/demo.i18n'
 import { Route as DemoPrismaRouteImport } from './routes/demo/prisma'
@@ -33,9 +33,9 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PodcastRoute = PodcastRouteImport.update({
-  id: '/podcast',
-  path: '/podcast',
+const EpisodesRoute = EpisodesRouteImport.update({
+  id: '/episodes',
+  path: '/episodes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -63,7 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
-  '/podcast': typeof PodcastRoute
+  '/episodes': typeof EpisodesRoute
   '/demo/i18n': typeof DemoI18nRoute
   '/demo/prisma': typeof DemoPrismaRoute
   '/blog/': typeof BlogIndexRoute
@@ -73,7 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
-  '/podcast': typeof PodcastRoute
+  '/episodes': typeof EpisodesRoute
   '/demo/i18n': typeof DemoI18nRoute
   '/demo/prisma': typeof DemoPrismaRoute
   '/blog': typeof BlogIndexRoute
@@ -84,7 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
-  '/podcast': typeof PodcastRoute
+  '/episodes': typeof EpisodesRoute
   '/demo/i18n': typeof DemoI18nRoute
   '/demo/prisma': typeof DemoPrismaRoute
   '/blog/': typeof BlogIndexRoute
@@ -96,7 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth'
-    | '/podcast'
+    | '/episodes'
     | '/demo/i18n'
     | '/demo/prisma'
     | '/blog/'
@@ -106,7 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth'
-    | '/podcast'
+    | '/episodes'
     | '/demo/i18n'
     | '/demo/prisma'
     | '/blog'
@@ -116,7 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth'
-    | '/podcast'
+    | '/episodes'
     | '/demo/i18n'
     | '/demo/prisma'
     | '/blog/'
@@ -127,7 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
-  PodcastRoute: typeof PodcastRoute
+  EpisodesRoute: typeof EpisodesRoute
   DemoI18nRoute: typeof DemoI18nRoute
   DemoPrismaRoute: typeof DemoPrismaRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -157,11 +157,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/podcast': {
-      id: '/podcast'
-      path: '/podcast'
-      fullPath: '/podcast'
-      preLoaderRoute: typeof PodcastRouteImport
+    '/episodes': {
+      id: '/episodes'
+      path: '/episodes'
+      fullPath: '/episodes'
+      preLoaderRoute: typeof EpisodesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -199,7 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
-  PodcastRoute: PodcastRoute,
+  EpisodesRoute: EpisodesRoute,
   DemoI18nRoute: DemoI18nRoute,
   DemoPrismaRoute: DemoPrismaRoute,
   BlogIndexRoute: BlogIndexRoute,

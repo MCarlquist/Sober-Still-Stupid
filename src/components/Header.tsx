@@ -26,11 +26,11 @@ export default function Header() {
             {m.home}
           </Link>
           <Link
-            to="/podcast"
+            to="/episodes"
             className="nav-link"
             activeProps={{ className: 'nav-link is-active' }}
           >
-            Podcasts
+            Episodes
           </Link>
           <Link
             to="/about"

@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as PodcastRouteImport } from './routes/podcast'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as DemoI18nRouteImport } from './routes/demo.i18n'
 import { Route as DemoPrismaRouteImport } from './routes/demo/prisma'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
@@ -29,6 +31,16 @@ const AboutRoute = AboutRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PodcastRoute = PodcastRouteImport.update({
+  id: '/podcast',
+  path: '/podcast',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoI18nRoute = DemoI18nRouteImport.update({
@@ -51,16 +63,20 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/podcast': typeof PodcastRoute
   '/demo/i18n': typeof DemoI18nRoute
   '/demo/prisma': typeof DemoPrismaRoute
+  '/blog/': typeof BlogIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/podcast': typeof PodcastRoute
   '/demo/i18n': typeof DemoI18nRoute
   '/demo/prisma': typeof DemoPrismaRoute
+  '/blog': typeof BlogIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
@@ -68,23 +84,42 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/podcast': typeof PodcastRoute
   '/demo/i18n': typeof DemoI18nRoute
   '/demo/prisma': typeof DemoPrismaRoute
+  '/blog/': typeof BlogIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about' | '/auth' | '/demo/i18n' | '/demo/prisma' | '/api/auth/$'
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/podcast'
+    | '/demo/i18n'
+    | '/demo/prisma'
+    | '/blog/'
+    | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/auth' | '/demo/i18n' | '/demo/prisma' | '/api/auth/$'
+  to:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/podcast'
+    | '/demo/i18n'
+    | '/demo/prisma'
+    | '/blog'
+    | '/api/auth/$'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/auth'
+    | '/podcast'
     | '/demo/i18n'
     | '/demo/prisma'
+    | '/blog/'
     | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
@@ -92,8 +127,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
+  PodcastRoute: typeof PodcastRoute
   DemoI18nRoute: typeof DemoI18nRoute
   DemoPrismaRoute: typeof DemoPrismaRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -118,6 +155,20 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/podcast': {
+      id: '/podcast'
+      path: '/podcast'
+      fullPath: '/podcast'
+      preLoaderRoute: typeof PodcastRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo/i18n': {
@@ -148,8 +199,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
+  PodcastRoute: PodcastRoute,
   DemoI18nRoute: DemoI18nRoute,
   DemoPrismaRoute: DemoPrismaRoute,
+  BlogIndexRoute: BlogIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "home_page": "Hem",
+  "about_page": "Om mig",
+  "example_message": "Välkommen till i18n-App.",
+  "language_label": "Språk",
+  "current_locale": "Valt Språk: {locale}",
+  "learn_router": "Paraglide JS lernen",
+  "blog": "Blogg",
+  "home": "Hem"
+}

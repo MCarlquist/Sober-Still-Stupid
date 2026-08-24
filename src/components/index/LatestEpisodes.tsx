@@ -26,12 +26,10 @@ type YoutubeItem = {
 }
 
 export function LatestEpisodes({ items }: { items: YoutubeItem[] }) {
-   
-    
     return (
         <div className="grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {items.map((item, index) => (
-                <Card className="relative mx-auto w-full max-w-sm pt-0 flex-auto flex flex-col" id={item.id.videoId}>
+                <Card className="relative mx-auto w-full max-w-sm pt-0 flex-auto flex flex-col" key={item.id.videoId}>
                     <img
                         src={
                             item.snippet.thumbnails?.high?.url ??
@@ -43,7 +41,6 @@ export function LatestEpisodes({ items }: { items: YoutubeItem[] }) {
                     />
                     <CardHeader>
                         <CardAction>
-                            <Badge variant="secondary">Episode {index + 1}</Badge>
                         </CardAction>
                         <CardTitle>{item.snippet.title}</CardTitle>
                         <CardDescription className="grow">{item.snippet.description}</CardDescription>

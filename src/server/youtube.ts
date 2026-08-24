@@ -29,10 +29,11 @@ export const getYoutubeChannel = createServerFn().handler(async () => {
                 .filter(
                     (item: { id?: { videoId?: string } }) =>
                         !excludedVideoIds.has(item.id?.videoId ?? ''),
-                ),
+                )
+                .slice(0, 3),
         };
     } catch (error) {
-        console.error('fetch error: ', error);
+        console.warn('fetch error: ', error);
         return {
             items: [],
             error: 'YouTube episodes are temporarily unavailable.',

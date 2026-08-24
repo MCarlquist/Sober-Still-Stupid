@@ -2,18 +2,15 @@ import { createFileRoute } from '@tanstack/react-router'
 import logo from '/logo.png'
 import { LatestEpisodes } from '#/components/index/LatestEpisodes'
 import { getYoutubeChannel } from '#/server/youtube'
-import { scrapeNA } from '#/server/scraper'
 
 export const Route = createFileRoute('/')({
   component: App,
   loader: async () => {
-    const [youtube, meetings] = await Promise.all([
+    const [youtube] = await Promise.all([
       getYoutubeChannel(),
-      scrapeNA(),
     ])
-    console.log(JSON.parse(meetings));
     
-    return { youtube, meetings }
+    return { youtube }
   },
 })
 
